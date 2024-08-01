@@ -1,12 +1,16 @@
 import React,{useState} from 'react'
-import {Container,Paper, TextField, Typography,Button} from '@mui/material';
+import {Container,Paper, TextField, Typography,Button,Stack,Avatar,IconButton} from '@mui/material';
+import { CameraAlt as CameraAlticon } from '@mui/icons-material';
+import { VisuallyHiddenInput } from '../components/styles/StyledComponents';
 const Login = () => {
 
 const[isLogin,setIsLogin] =useState(true);
 
+ 
+
 
 const toggleLogin=()=>setIsLogin((prev)=>!prev);
-
+ 
   return(
    <Container component={"main"} 
    maxWidth="xs"
@@ -81,15 +85,40 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
             </>
             ): (
                 <>
-              <Typography variant="h5">Login</Typography>
+              <Typography variant="h5">Sign Up</Typography>
                <form style={{
                 width:"100%",
                 marginTop:"1rem"
                }}>   
 
                  
-                    <Stack>
-                    
+                    <Stack position={"relative"} width ={"8rem"} margin={"auto"}>
+                       <Avatar sx ={{
+                        width: "8rem",
+                        height:"8rem",
+                        marginTop: "1rem",
+                        objectFit:"contain",
+                       }}
+                       
+                       />
+                       <IconButton 
+                       sx ={{
+                            position:"absolute",
+                            bottom:"0",
+                            right:"0",
+                            color:"white",
+                            bgcolor:"rgba(0,0,0,0.5)",
+                            ":hover":{
+                                bgcolor:"rgba(0,0,0,0.7)",
+                            }
+                       }}
+                         component="label"
+                       >
+                        <>
+                            <CameraAlticon/>
+                            <VisuallyHiddenInput type="file"/>
+                        </>
+                       </IconButton>
                     </Stack>
 
                     <TextField
