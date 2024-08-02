@@ -1,7 +1,9 @@
 import React,{useState} from 'react'
 import {Container,Paper, TextField, Typography,Button,Stack,Avatar,IconButton} from '@mui/material';
-import { CameraAlt as CameraAlticon } from '@mui/icons-material';
+import { CameraAlt as CameraAlticon, Gradient } from '@mui/icons-material';
 import { VisuallyHiddenInput } from '../components/styles/StyledComponents';
+import {useFileHandler, useInputValidation,useStrongPassword} from '6pp'
+import { usernameValidator } from '../utils/validators';
 const Login = () => {
 
 const[isLogin,setIsLogin] =useState(true);
@@ -10,8 +12,30 @@ const[isLogin,setIsLogin] =useState(true);
 
 
 const toggleLogin=()=>setIsLogin((prev)=>!prev);
+
+const name = useInputValidation("");
+const bio = useInputValidation("");
+const username = useInputValidation("",usernameValidator);
+const password =  useStrongPassword()
  
+const avatar = useFileHandler("single")
+
+const handleLogin =(e)=>{
+     e.preventDefault();
+};
+
+const handleSignUp =(e)=>{
+    e.preventDefault();
+};
+
+
   return(
+    <div
+       style={{
+           backgroundImage:
+           "linear-gradient(rgba(200,200,200,0.5),rgba(120,110,220,0.5))"
+       }}
+    >
    <Container component={"main"} 
    maxWidth="xs"
    sx={{
@@ -38,7 +62,10 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                <form style={{
                 width:"100%",
                 marginTop:"1rem"
-               }}>
+               }}
+               
+               onSubmit = {handleLogin}
+               >
 
                     <TextField
                     required
@@ -46,6 +73,8 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                     label="Username"
                     margin="normal"
                     variant="outlined"
+                    value={username.value}
+                    onChange={username.changeHandler}
                     />
                     
                     <TextField
@@ -55,6 +84,8 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                     type="password"
                     margin="normal"
                     variant="outlined"
+                    value={password.value}
+                    onChange={password.changeHandler}
                     />
 
                     <Button 
@@ -89,7 +120,9 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                <form style={{
                 width:"100%",
                 marginTop:"1rem"
-               }}>   
+               }}
+                  onSubmit = {handleSignUp}
+               >   
 
                  
                     <Stack position={"relative"} width ={"8rem"} margin={"auto"}>
@@ -99,8 +132,9 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                         marginTop: "1rem",
                         objectFit:"contain",
                        }}
-                       
+                       src={avatar.preview}
                        />
+
                        <IconButton 
                        sx ={{
                             position:"absolute",
@@ -116,10 +150,18 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                        >
                         <>
                             <CameraAlticon/>
-                            <VisuallyHiddenInput type="file"/>
+                            <VisuallyHiddenInput type="file" onChange={avatar.changeHandler}/>
                         </>
                        </IconButton>
                     </Stack>
+
+                    {
+                        avatar.error &&(
+                            <Typography m={"1rem auto"} width={"fit-content"}  display={"block"} color="error" variant="caption">
+                                {avatar.error}
+                            </Typography>
+                        )
+                    }
 
                     <TextField
                     required
@@ -127,6 +169,8 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                     label="Name"
                     margin="normal"
                     variant="outlined"
+                    value={name.value}
+                    onChange={name.changeHandler}
                     />
 
                     <TextField
@@ -135,6 +179,8 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                     label="Bio"
                     margin="normal"
                     variant="outlined"
+                    value={bio.value}
+                    onChange={bio.changeHandler}
                     />
 
                     <TextField
@@ -143,7 +189,17 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                     label="Username"
                     margin="normal"
                     variant="outlined"
+                    value={username.value}
+                    onChange={username.changeHandler}
                     />
+
+                    {
+                        username.error &&(
+                            <Typography color="error" variant="caption">
+                                {username.error}
+                            </Typography>
+                        )
+                    }
                     
                     <TextField
                     required
@@ -152,7 +208,17 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
                     type="password"
                     margin="normal"
                     variant="outlined"
+                    value={password.value}
+                    onChange={password.changeHandler}
                     />
+
+                    {
+                        password.error &&(
+                            <Typography color="error" variant="caption">
+                                {password.error}
+                            </Typography>
+                        )
+                    }
 
                     <Button 
                         sx={{
@@ -183,6 +249,7 @@ const toggleLogin=()=>setIsLogin((prev)=>!prev);
         )}
      </Paper>
     </Container>
+    </div>
   )
 }
 
