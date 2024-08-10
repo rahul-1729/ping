@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '../styles/StyledComponents';
 import { Typography, Stack, Box } from '@mui/material';
+import AvatarCard from './AvatarCard';
 
 const ChatItem = ({
   avatar = [],
@@ -30,17 +31,9 @@ const ChatItem = ({
         borderBottom: "1px solid #f0f0f0",
         justifyContent: "space-between",
       }}>
-        {/* Avatar Card */}
-        <Stack direction="row" alignItems="center" spacing={2}>
-          <div style={{
-            width: "40px",
-            height: "40px",
-            borderRadius: "50%",
-            backgroundColor: "#ddd",
-            backgroundImage: `url(${avatar})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }} />
+         <AvatarCard avatar={avatar}/>
+
+        <Stack>
           <Typography>{name}</Typography>
           {newMessageAlert && (
             <Typography>{newMessageAlert.count} New Message</Typography>
