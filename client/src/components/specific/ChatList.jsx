@@ -25,8 +25,8 @@ return (
         );
         
         const isOnline =members?.some((member)=>onlineUsers.includes(_id));
-        
-        console.log(`isOnline ${isOnline}` )
+
+     
 
           return (
           <ChatItem 
@@ -39,7 +39,7 @@ return (
           key={_id}
           groupChat={groupChat}
           sameSender={chatId===_id}
-          handleDeleteChatOpen = {handleDeleteChat}
+          handleDeleteChat = {handleDeleteChat}
           />
 
           

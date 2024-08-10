@@ -6,4 +6,11 @@ export const sampleChats=[{
     groupChat:false,
     members:["1","2"],
 },
+{
+    avatar:["https://img.freepik.com/premium-photo/avatar-resourcing-company_1254967-6653.jpg?size=626&ext=jpg"],
+    name:"Anubhav Gupta",
+    _id:"2",
+    groupChat:false,
+    members:["1","2"],
+},
 ];
