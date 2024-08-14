@@ -7,7 +7,7 @@ export const sampleChats=[{
     members:["1","2"],
 },
 {
-    avatar:["https://img.freepik.com/premium-photo/avatar-resourcing-company_1254967-6653.jpg?size=626&ext=jpg"],
+    avatar:["https://img.freepik.com/premium-vector/avatar-man-isolated-cartoon-style_174639-57065.jpg?size=626&ext=jpg"],
     name:"Anubhav Gupta",
     _id:"2",
     groupChat:false,
